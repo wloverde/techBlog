@@ -29,13 +29,6 @@ BlogPost.init(
         model: 'user',
         key: 'id',
       },
-    },
-    comment_id: {
-      type: DataTypes.INTEGER,
-      references{
-        model: 'comment',
-        key: 'id'
-      },
     }
   },
   {
@@ -43,7 +36,7 @@ BlogPost.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'BlogPost',
+    modelName: 'blogpost',
   }
 );
 
