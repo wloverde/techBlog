@@ -56,12 +56,12 @@ router.get('/:postId', async (req, res) => {
 
 // POST create new blog post
 router.post('/', async (req, res) => {
-  const { title, body, user_id } = req.body;
+  const { title, description, user_id } = req.body;
 
   try {
     const newBlogPost = await BlogPost.create({
       title,
-      body,
+      description,
       user_id,
     });
 
@@ -75,7 +75,7 @@ router.post('/', async (req, res) => {
 // PUT update blog post by ID
 router.put('/:postId', async (req, res) => {
   const { postId } = req.params;
-  const { title, body } = req.body;
+  const { title, description } = req.body;
 
   try {
     const blogPost = await BlogPost.findByPk(postId);
@@ -85,7 +85,7 @@ router.put('/:postId', async (req, res) => {
     }
 
     blogPost.title = title;
-    blogPost.body = body;
+    blogPost.description = description;
 
     await blogPost.save();
 

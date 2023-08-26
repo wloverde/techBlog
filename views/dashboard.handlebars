@@ -1,48 +1,73 @@
 <div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
-  </div>
+  <h2>Welcome, {{userName}}!</h2>
+  <p>Logged In: {{logged_in}}</p>
 </div>
 
 <div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Project:</h3>
+  <div class="col s12 m6">
+    <h3>Create a New Post:</h3>
 
-    <form class="form new-project-form">
-      <div class="form-group">
-        <label for="project-name">project name:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
+    <form class="new-post-form" data-user-id="{{user_id}}">
+      <div class="input-field">
+        <label for="post-title">Post Title:</label>
+        <input type="text" id="post-title" name="post-title" />
       </div>
-      <div class="form-group">
-        <label for="project-funding">needed funding ($):</label>
-        <input class="form-input" type="number" id="project-funding" name="project-funding" />
+      <div class="input-field">
+        <label for="post-description">Description:</label>
+        <textarea
+          id="post-description"
+          class="materialize-textarea post-description"
+          name="post-description"
+        ></textarea>
       </div>
-      <div>
-        <label for="project-desc">description:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
+      <div class="input-field">
+        <button
+          type="submit"
+          class="btn waves-effect waves-light"
+        >Create</button>
       </div>
     </form>
   </div>
 
-  {{#if projects.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
+  <div class="col s12 m6">
+    <h3>Your Previous Posts:</h3>
 
-    {{#each projects as |project|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
+    <!-- Loop to display previous posts -->
+    {{#each blogPosts as |blogpost|}}
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <div class="input-field">
+            <input
+              type="text"
+              id="edit-title-{{blogpost.id}}"
+              class="editable-title"
+              data-post-id="{{blogpost.id}}"
+              value="{{blogpost.title}}"
+            />
+          </div>
+          <div class="input-field">
+            <textarea
+              id="edit-description-{{blogpost.id}}"
+              class="materialize-textarea editable-description"
+              data-post-id="{{blogpost.id}}"
+            >{{blogpost.description}}</textarea>
+          </div>
+
+          <p>Posted on: {{blogpost.date_created}}</p>
+        </div>
+        <div class="card-action">
+          <button
+            class="btn waves-effect waves-light edit-description"
+            data-post-id="{{blogpost.id}}"
+          >Edit</button>
+          <button
+            class="btn waves-effect waves-light red delete-post"
+            data-post-id="{{blogpost.id}}"
+          >Delete</button>
+        </div>
       </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
-      </div>
-    </div>
     {{/each}}
   </div>
-  {{/if}}
 </div>
 
-<script src="./js/profile.js"></script>
+<script src="./js/dashboard.js"></script>

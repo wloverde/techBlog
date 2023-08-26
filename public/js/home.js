@@ -20,9 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
           if (response.ok) {
             // Comment submission successful, update UI as needed
-            // For example, you can add the new comment to the comments section
-            const newComment = await response.json();
-            // Update the UI with the new comment
+            document.location.replace('/');
           } else {
             console.error("Comment submission failed");
           }
