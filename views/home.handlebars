@@ -1,0 +1,25 @@
+{{#each blogPosts as |blogpost|}}
+<div class="blog-post">
+    <h2>{{blogpost.title}}</h2>
+    <p>{{blogpost.description}}</p>
+    <p>Posted by: {{blogpost.user.name}}</p>
+    <p>Date: {{blogpost.date_created}}</p>
+    <div class="comments">
+        {{#each blogpost.comments as |comment|}}
+        <div class="comment">
+            <p>{{comment.comment}}</p>
+            <p>Posted by: {{comment.user.name}}</p>
+            <p>Date: {{comment.date_created}}</p>
+        </div>
+        {{/each}}
+    </div>
+    {{#if logged_in}}
+    <div class="add-comment">
+        <textarea id="commentText-{{blogpost.id}}" placeholder="Add a comment"></textarea>
+        <button class="submit-comment" data-blogpost-id="{{blogpost.id}}">Submit Comment</button>
+    </div>
+    {{/if}}
+</div>
+{{/each}}
+<script src="/js/home.js"></script>
+

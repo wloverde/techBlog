@@ -13,10 +13,10 @@
   <body>
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Logo</a>
+        <a href="#" class="brand-logo center">TechBlog</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
           {{#if logged_in}}
-            <li><a href="/home">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/dashboard">Dashboard</a></li>
             <button class="no-button" id="logout">logout</button>
           {{else}}
@@ -25,10 +25,8 @@
         </ul>
       </div>
     </nav>
-    <main class="center">
-      <!-- Render the sub layout -->
-      {{{body}}}
-    </main>
+    <!-- Render the sub layout -->
+    {{{body}}}
     <footer>
 
     </footer>
