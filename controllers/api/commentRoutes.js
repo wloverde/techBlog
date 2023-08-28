@@ -50,15 +50,24 @@ router.get('/:commentId', async (req, res) => {
 });
 
 // POST create new comment
-router.post('/', async (req, res) => {
-  const { comment_text, user_id, blogpost_id } = req.body;
+router.post('/blogpost/:blogpostId', async (req, res) => {
+  const { comment, user_id } = req.body;
+  const { blogpostId } = req.params;
 
+  
   try {
+    const blogPost = await BlogPost.findByPk(blogpostId);
+    
+    if (!blogPost) {
+      return res.status(404).json({ message: 'Blog post not found' });
+    }
+    
     const newComment = await Comment.create({
-      comment_text,
-      user_id,
-      blogpost_id,
+      comment,
+      user_id: req.session.user_id,
+      blogpost_id: blogpostId,
     });
+    
 
     res.status(201).json(newComment);
   } catch (error) {
