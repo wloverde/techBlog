@@ -23,7 +23,8 @@ express, express-handlebars, javascript, html, SQL
     
 ## Usage
     
-![alt text](assets/images/na)
+[heroku](https://techblog-example-bc30a5d3bdef.herokuapp.com/)    
+![alt text](./public/images/Capture.JPG)
     
 ## Credits
     
